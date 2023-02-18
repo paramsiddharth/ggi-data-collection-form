@@ -47,6 +47,14 @@
   font-size: 1.4em;
 }
 
+.center form {
+  width: 100%;
+}
+
+.input {
+  margin-bottom: 0.6em;
+}
+
 .code {
   font-weight: 700;
   font-family: var(--font-mono);
@@ -91,6 +99,7 @@
   align-items: center;
   position: relative;
   padding: 4rem 0;
+  width: 400px;
 }
 
 .center::before {
@@ -165,6 +174,10 @@
   background-clip: content-box;
 }
 
+.footer {
+  text-align: center;
+}
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
@@ -189,78 +202,27 @@
 
 /* Mobile */
 @media (max-width: 700px) {
-  .content {
-    padding: 4rem;
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
-    margin-bottom: 120px;
-    max-width: 320px;
-    text-align: center;
-  }
-
-  .card {
-    padding: 1rem 2.5rem;
-  }
-
-  .card h2 {
-    margin-bottom: 0.5rem;
-  }
-
-  .center {
-    padding: 8rem 0 6rem;
-  }
-
-  .center::before {
-    transform: none;
-    height: 300px;
+  .main {
+    padding: 2rem;
   }
 
   .description {
-    font-size: 0.8rem;
+    width: 100%;
+    flex-wrap: wrap;
   }
 
-  .description a {
-    padding: 1rem;
-  }
-
-  .description p,
-  .description div {
-    display: flex;
-    justify-content: center;
-    position: fixed;
+  .header {
     width: 100%;
   }
 
-  .description p {
-    align-items: center;
-    inset: 0 0 auto;
-    padding: 2rem 1rem 1.4rem;
-    border-radius: 0;
-    border: none;
-    border-bottom: 1px solid rgba(var(--callout-border-rgb), 0.25);
-    background: linear-gradient(
-      to bottom,
-      rgba(var(--background-start-rgb), 1),
-      rgba(var(--callout-rgb), 0.5)
-    );
-    background-clip: padding-box;
-    backdrop-filter: blur(24px);
+  .menu {
+    width: 100%;
+    justify-content: space-around;
   }
 
-  .description div {
-    align-items: flex-end;
-    pointer-events: none;
-    inset: auto 0 0;
-    padding: 2rem;
-    height: 200px;
-    background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      rgb(var(--background-end-rgb)) 40%
-    );
-    z-index: 1;
+  .center {
+    width: 85vw;
+    padding: 1rem 0;
   }
 }
 
@@ -268,17 +230,6 @@
 @media (min-width: 701px) and (max-width: 1120px) {
   .grid {
     grid-template-columns: repeat(2, 50%);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .vercelLogo {
-    filter: invert(1);
-  }
-
-  .logo,
-  .thirteen img {
-    filter: invert(1) drop-shadow(0 0 0.3rem #ffffff70);
   }
 }
 
