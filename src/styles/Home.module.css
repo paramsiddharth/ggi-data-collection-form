@@ -15,7 +15,16 @@
   max-width: var(--max-width);
   width: 100%;
   z-index: 2;
-  font-family: var(--font-mono);
+  font-family: var(--font-regular);
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+}
+
+.item {
+  margin: 20px;
 }
 
 .description a {
@@ -25,13 +34,17 @@
   gap: 0.5rem;
 }
 
-.description p {
+.header {
   position: relative;
   margin: 0;
   padding: 1rem;
   background-color: rgba(var(--callout-rgb), 0.5);
   border: 1px solid rgba(var(--callout-border-rgb), 0.3);
   border-radius: var(--border-radius);
+}
+
+.description p h1 {
+  font-size: 1.4em;
 }
 
 .code {
@@ -86,6 +99,7 @@
   width: 480px;
   height: 360px;
   margin-left: -400px;
+  z-index: -2;
 }
 
 .center::after {
