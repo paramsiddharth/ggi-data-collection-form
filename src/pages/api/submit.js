@@ -2,9 +2,11 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import path from 'path';
 import fs from 'fs-extra';
-// import { promisify } from 'util';
 import { Form } from 'multiparty';
 import { customAlphabet as nanoid } from 'nanoid/non-secure';
+
+import dbConnect from '@/lib/connect-db';
+import Entry from '@/models/Entry';
 
 const storageDir = path.resolve(process.cwd(), 'resumés');
 
@@ -14,18 +16,13 @@ const storageDir = path.resolve(process.cwd(), 'resumés');
  * @param {NextApiResponse} res 
  */
 export default async function handler(req, res) {
-  // res.status(200).json({ name: 'John Doe' });
   const form = new Form();
-  // const [fields, files] = await promisify(form.parse)(req, res);
-
   const { fields, files } = await new Promise((resolve, reject) => {
     form.parse(req, function (err, fields, files) {
       if (err) reject({ err });
       resolve({ fields, files });
     });
   });
-
-  // console.log(fields, files);
 
   const {
     name: [name],
@@ -59,6 +56,8 @@ export default async function handler(req, res) {
   };
 
   const number = fs.readdirSync(storageDir).length;
+
+  await dbConnect();
   
   const random = nanoid('1234567890abcdefpqrxyz', 6)().toLowerCase();
   const filename = `resumé-${number + 1}-[${path.basename(originalName, extension)}]-${random}${extension}`;
@@ -68,7 +67,15 @@ export default async function handler(req, res) {
   fs.moveSync(tempPath, storagePath);
   entry.resumé = storagePath;
 
-  res.status(200).send('Done!' + '\n\n' + JSON.stringify(entry, null, 4));
+  const entryObj = new Entry(entry);
+  await entryObj.save();
+
+  const redirectURL = new URLSearchParams();
+  redirectURL.set('id', entryObj.id);
+
+  res.redirect('/success?' + redirectURL.toString());
+
+  // res.status(200).send('Done!' + '\n\n' + JSON.stringify(entry, null, 4));
   // res.redirect('/?success=true');
 }
 

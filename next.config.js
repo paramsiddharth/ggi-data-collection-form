@@ -1,4 +1,4 @@
-require('./lib/init');
+require('./src/lib/init');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
