@@ -14,11 +14,12 @@ export default function Layout({ children }) {
       <main className={styles.main}>
         <div className={styles.description}>
           <div className={styles.header}>
-            <h1>Form</h1>
+            <h1><Link href='/'>Form</Link></h1>
           </div>
           <div className={styles.menu}>
-            <Link href='#' className={styles.item}>Dashboard</Link>
-            <Link href='#' className={styles.item}>About</Link>
+            <Link href='/' className={styles.item}>Form</Link>
+            <Link href='/dashboard' className={styles.item}>Dashboard</Link>
+            <Link href='/about' className={styles.item}>About</Link>
           </div>
         </div>
 

@@ -115,7 +115,7 @@ export default function Home() {
         <div className={styles.input}>
           <TextField fullWidth variant='outlined' label='Age' type='number' required 
             inputRef={ageRef}
-            value={age}
+            value={age ?? ''}
             onChange={onChange(setAge)}
             name='age'
           />
@@ -177,7 +177,7 @@ export default function Home() {
             ))}
           </Select>
         </FormControl>
-        <input ref={positionsRef} name='positions' value={JSON.stringify(positions)} hidden />
+        <input ref={positionsRef} name='positions' value={JSON.stringify(positions)} hidden readOnly />
         <div className={styles.input}>
           <TextField
             fullWidth variant='outlined' multiline minRows={3}

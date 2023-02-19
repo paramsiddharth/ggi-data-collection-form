@@ -74,9 +74,6 @@ export default async function handler(req, res) {
   redirectURL.set('id', entryObj.id);
 
   res.redirect('/success?' + redirectURL.toString());
-
-  // res.status(200).send('Done!' + '\n\n' + JSON.stringify(entry, null, 4));
-  // res.redirect('/?success=true');
 }
 
 export const config = {
