@@ -60,7 +60,7 @@ export default async function handler(req, res) {
   await dbConnect();
   
   const random = nanoid('1234567890abcdefpqrxyz', 6)().toLowerCase();
-  const filename = `resumé-${number + 1}-[${path.basename(originalName, extension)}]-${random}${extension}`;
+  const filename = `resume-${number + 1}-[${path.basename(originalName, extension)}]-${random}${extension}`;
   const storagePath = path.join(storageDir, filename);
   const tempPath = resumé.path;
 

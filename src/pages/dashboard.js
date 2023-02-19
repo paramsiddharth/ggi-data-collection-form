@@ -65,6 +65,13 @@ export default function Dashboard(props) {
                 <div style={{ flexGrow: 1, textAlign: 'center' }}>
                   Page { page + 1 } of { total }
                 </div>
+                <Button variant='contained' color='info'
+                  href='/api/csv'
+                  download='entries.csv'
+                  sx={{ marginRight: 1 }}
+                >
+                  Download CSV
+                </Button>
                 <Button disabled={page >= total - 1 } variant='contained' color='success'
                   onClick={toPage(page + 1)}
                 >
