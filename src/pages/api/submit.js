@@ -64,6 +64,7 @@ export default async function handler(req, res) {
   const storagePath = path.join(storageDir, filename);
   const tempPath = resumé.path;
 
+  fs.ensureDirSync(storageDir);
   fs.moveSync(tempPath, storagePath);
   entry.resumé = filename;
 
