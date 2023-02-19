@@ -92,7 +92,7 @@ export default function Home() {
       <Head>
         <title>Form</title>
       </Head>
-      <form action='/api/submit' method='post' onSubmit={submit}>
+      <form encType='multipart/form-data' action='/api/submit' method='post' onSubmit={submit}>
         <div className={styles.input}>
           <Typography variant='h2' align='center'>Form</Typography>
         </div>
@@ -101,6 +101,7 @@ export default function Home() {
             inputRef={nameRef}
             value={name}
             onChange={onChange(setName)}
+            name='name'
           />
         </div>
         <div className={styles.input}>
@@ -108,6 +109,7 @@ export default function Home() {
             inputRef={emailRef}
             value={email}
             onChange={onChange(setEmail)}
+            name='email'
           />
         </div>
         <div className={styles.input}>
@@ -115,6 +117,7 @@ export default function Home() {
             inputRef={ageRef}
             value={age}
             onChange={onChange(setAge)}
+            name='age'
           />
         </div>
         <div className={styles.input}>
@@ -122,6 +125,7 @@ export default function Home() {
             inputRef={phoneRef}
             value={phone}
             onChange={onChange(setPhone)}
+            name='phone'
           />
         </div>
         <div className={styles.input}>
@@ -129,6 +133,7 @@ export default function Home() {
             inputRef={instRef}
             value={inst}
             onChange={onChange(setInst)}
+            name='institution'
           />
         </div>
         <div className={styles.input}>
@@ -143,22 +148,23 @@ export default function Home() {
             max={10}
             step={1}
             marks={Array.from(Array(10).keys()).map(k => ({ value: k + 1, label: k + 1 }))}
+            name='years'
           />
         </div>
         <FormControl sx={{ width: '100%' }} className={styles.input}>
           <InputLabel id='posofint' mt={3}>Positions of interest *</InputLabel>
           <Select
-            inputRef={positionsRef}
+            // inputRef={positionsRef}
             required
             labelId='posofint'
             multiple
             value={positions}
             onChange={({ target: { value } }) => {
-              setPositions(
-                typeof value === 'string' ?
-                  value.split(',') : // Autofill
-                  value
-              );
+              const values = typeof value === 'string' ?
+                value.split(',') : // Autofill
+                value;
+              setPositions(values);
+              // positionsRef.current.value = JSON.stringify(values);
             }}
             input={<OutlinedInput label="Positions of interest *" />}
             renderValue={(selected) => selected.join(', ')}
@@ -171,6 +177,7 @@ export default function Home() {
             ))}
           </Select>
         </FormControl>
+        <input ref={positionsRef} name='positions' value={JSON.stringify(positions)} hidden />
         <div className={styles.input}>
           <TextField
             fullWidth variant='outlined' multiline minRows={3}
@@ -178,6 +185,7 @@ export default function Home() {
             inputRef={whatMakesYouIdealRef}
             value={whatMakesYouIdeal}
             onChange={onChange(setWhatMakesYouIdeal)}
+            name='whatMakesYouIdeal'
           />
         </div>
         <div className={styles.input}>
@@ -189,7 +197,7 @@ export default function Home() {
           }} variant='contained' component='label'
           /* fullWidth */
           color='info'
-            // sx={{ textTransform: 'none' }}
+          sx={{ /* textTransform: 'none', */ userSelect: 'none' }}
           >
             {
               resumé == null ?
@@ -197,6 +205,7 @@ export default function Home() {
                 'Clear resumé'
             } *
             <input ref={resuméRef}
+              name='resumé'
               onChange={({ target: { files: [file] } }) => setResumé(file)}
               className={styles.hiddenFileInput} required accept='.pdf,.doc,.docx,.odf' type='file' 
             />
@@ -211,6 +220,7 @@ export default function Home() {
             inputRef={queriesRef}
             value={queries}
             onChange={onChange(setQueries)}
+            name='queries'
           />
         </div>
         {
