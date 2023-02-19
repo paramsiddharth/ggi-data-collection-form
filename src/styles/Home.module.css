@@ -178,6 +178,14 @@
   text-align: center;
 }
 
+.hiddenFileInput {
+  /* height: 1px;
+  width: 1px;
+  visibility: hidden; */
+  position: absolute;
+  opacity: 0;
+}
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
