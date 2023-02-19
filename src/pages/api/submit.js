@@ -65,7 +65,7 @@ export default async function handler(req, res) {
   const tempPath = resumé.path;
 
   fs.moveSync(tempPath, storagePath);
-  entry.resumé = storagePath;
+  entry.resumé = filename;
 
   const entryObj = new Entry(entry);
   await entryObj.save();

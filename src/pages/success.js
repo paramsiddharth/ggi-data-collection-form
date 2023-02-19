@@ -6,7 +6,7 @@ import Entry from '@/models/Entry';
 import Layout from '@/components/layout';
 import styles from '@/styles/Home.module.css';
 
-export default function Home({ id }) {
+export default function Success({ id }) {
   return (
     <Layout>
       <Head>
@@ -19,7 +19,7 @@ export default function Home({ id }) {
   );
 }
 
-export async function getServerSideProps({ query: { id } }) {
+export async function getServerSideProps({ query: { id }, res }) {
   await dbConnect();
 
   try {
@@ -29,6 +29,7 @@ export async function getServerSideProps({ query: { id } }) {
       throw new Error('Not found!');
     }
 
+    res.statusCode = 201;
     return { props: { id } };
   } catch {
     return {

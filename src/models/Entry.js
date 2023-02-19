@@ -41,6 +41,8 @@ const EntrySchema = new mongoose.Schema({
   queries: {
     type: String
   }
+}, {
+  timestamps: true
 });
 
 export default mongoose.models.Entry || mongoose.model('Entry', EntrySchema);

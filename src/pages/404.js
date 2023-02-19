@@ -4,7 +4,7 @@ import { Typography } from '@mui/material';
 import Layout from '@/components/layout';
 import styles from '@/styles/Home.module.css';
 
-export default function Home({ id }) {
+export default function NotFound({ id }) {
   return (
     <Layout>
       <Head>

@@ -1,0 +1,1 @@
+export const maxEntriesPerPage = 4;
